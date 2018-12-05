@@ -63,13 +63,29 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&  b:NERDTre
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_force_overwrite_completefunc = 1
 
+" Other Config
+" Indentation & Tabs
+set autoindent   		" 自動對其文字縮進
+set smartindent  		" 智能缩进使用了代码语法和样式来对
+set ts=2         		" 設置tab键为2個空格
+set tabstop=2    		" 设置 Tab 的空格数量
+set shiftwidth=4 		" 设置“移位操作”（例如“>>”或“<<”）的空格数量
+set expandtab    		" 按下 Tab 键时将插入空格
 
-"other config
+" Display & format
 set mouse=a
-set nu! " 顯示行號
-syntax on " 代码高亮
-set ts=2 " 設置tab键为2個空格
-set tabstop=2
+set nu!             " 顯示行號
+"set textwidth = 80  " 文本超过最大宽度时换行
+set wrapmargin = 2  " 根据距离右边的列数来换行
+set showmatch       " 遍历文件时识别括弧的起始和结束位置
+
+" Search
+set hlsearch        " 文件中高亮显示搜索关键词
+set incsearch       " 进行增量搜索
+set ignorecase      " 搜索时忽略大小写
+set smartcase       " 设置了 ignorecase 和 smartcase 并且搜索关键字包含大写字母时，搜索时不考虑 ignorecase
+syntax on           " 代码高亮
+
 let mapleader = ","  
 let g:mapleader = ","  
 map Y "+y  
