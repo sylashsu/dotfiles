@@ -10,7 +10,7 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # 主題設置
 # 列表在 ~/.oh-my-zsh/themes/
-ZSH_THEME="ys"
+  ZSH_THEME="ys"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -37,7 +37,7 @@ ZSH_THEME="ys"
 
 # Uncomment the following line to disable colors in ls.
 # ls 命令帶顏色
-# DISABLE_LS_COLORS="true"
+ DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # 標題顯示
@@ -75,25 +75,25 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 # Plugin 設定
 plugins=(
-	sudo
-  git
-	git-extras
-	catimg
-  colored-man-pages
-	command-not-found
-  dirhistory
-  zsh-syntax-highlighting
-  extract
-	docker
-	encode64
-	httpie
-	jsontools
-	mvn
-	npm
-	systemd
-	urltools
-	vi-mode
-	web-search
+ git
+ git-extras
+ catimg
+ colored-man-pages
+ sudo
+ command-not-found
+ dirhistory
+ zsh-syntax-highlighting
+ extract
+ docker
+ encode64
+ httpie
+ jsontools
+ mvn
+ npm
+ systemd
+ urltools
+ vi-mode
+ web-search
 )
 # plugins list
 #	history
@@ -102,6 +102,13 @@ source $ZSH/oh-my-zsh.sh
 
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # User configuration
+#JAVAHOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64/bin"
+GraalVm="/home/sylas/GrralVm/graalvm-ce-1.0.0-rc8/bin"
+#GraalVm=""
+GOHOME="/usr/local/go/bin"
+#export PATH="$GraalVm:$PATH"
+#export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="$GOHOME:$PATH"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -109,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # default editor
-export EDITOR='vi'
+export EDITOR='vim'
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -130,11 +137,15 @@ export EDITOR='vi'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="vi ~/.zshrc"
+#alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ltra='ls -altrF'
 alias ltr='ls -ltrF'
-alias ll='ls -alF'
+alias ll='ls -lF'
 alias la='ls -A'
 alias l='ls -CF'
 alias grep="grep --color=auto" 
+alias goexec='/home/sylas/go/bin/goexec'
+alias gommand='/home/sylas/go/bin/gommand'
+# bindkey
+bindkey "\e\e" sudo-command-line

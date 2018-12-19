@@ -39,6 +39,9 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'elzr/vim-json'
 Plugin 'suan/vim-instant-markdown'
 
+" golang
+Plugin 'fatih/vim-go'
+
 " 安装插件写在这之前
 call vundle#end()            " required
 filetype plugin on    " required
@@ -76,7 +79,7 @@ set expandtab    		" 按下 Tab 键时将插入空格
 set mouse=a
 set nu!             " 顯示行號
 "set textwidth = 80  " 文本超过最大宽度时换行
-set wrapmargin = 2  " 根据距离右边的列数来换行
+set wrapmargin=2    " 根据距离右边的列数来换行
 set showmatch       " 遍历文件时识别括弧的起始和结束位置
 
 " Search
@@ -97,6 +100,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 "powerline config
 set laststatus=2
 set t_Co=256   
+:colorscheme molokai
 set encoding=utf-8  
 set fillchars+=stl:\ ,stlnc:\
 
