@@ -23,7 +23,7 @@ function setup_git() {
 function setup_vim() {
     sudo apt-get install vim
     sudo git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    sudo cp vimrc ~/.vimrc
+    sudo ln -s vimrc ~/.vimrc
     sudo touch ~/.vimrc
     sudo vim +PluginInstall +qall
 }
