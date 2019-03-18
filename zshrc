@@ -147,5 +147,12 @@ alias l='ls -CF'
 alias grep="grep --color=auto" 
 alias goexec='/home/sylas/go/bin/goexec'
 alias gommand='/home/sylas/go/bin/gommand'
+
+##
+alias gw='cd ~/WorkSpace/go'
+alias pw='cd ~/WorkSpace/python'
+alias jw='cd ~/WorkSpace/java'
+alias dw='cd ~/WorkSpace/docker'
+
 # bindkey
 bindkey "\e\e" sudo-command-line

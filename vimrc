@@ -75,6 +75,10 @@ set tabstop=2    		" 设置 Tab 的空格数量
 set shiftwidth=4 		" 设置“移位操作”（例如“>>”或“<<”）的空格数量
 set expandtab    		" 按下 Tab 键时将插入空格
 
+" Dispaty tab & space
+set listchars=tab:>.,trail:~,extends:>,precedes:<
+set list
+
 " Display & format
 set mouse=a
 set nu!             " 顯示行號
@@ -89,9 +93,9 @@ set ignorecase      " 搜索时忽略大小写
 set smartcase       " 设置了 ignorecase 和 smartcase 并且搜索关键字包含大写字母时，搜索时不考虑 ignorecase
 syntax on           " 代码高亮
 
-let mapleader = ","  
-let g:mapleader = ","  
-map Y "+y  
+let mapleader = ","
+let g:mapleader = ","
+map Y "+y
 map P "+p  ""
 
 "easymotion
@@ -99,9 +103,10 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 "powerline config
 set laststatus=2
-set t_Co=256   
+set t_Co=256
 :colorscheme molokai
-set encoding=utf-8  
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,big5,default,latin1
 set fillchars+=stl:\ ,stlnc:\
 
 " markdown setting
