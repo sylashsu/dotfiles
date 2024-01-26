@@ -42,6 +42,10 @@ Plugin 'suan/vim-instant-markdown'
 " golang
 Plugin 'fatih/vim-go'
 
+" airline
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+
 " 安装插件写在这之前
 call vundle#end()            " required
 filetype plugin on    " required
@@ -108,6 +112,9 @@ set t_Co=256
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,big5,default,latin1
 set fillchars+=stl:\ ,stlnc:\
+
+" airline
+"let g:airline_powerline_fonts = 1
 
 " markdown setting
 let g:vim_markdown_math = 1

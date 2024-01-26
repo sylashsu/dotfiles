@@ -1,6 +1,17 @@
 #!/bin/bash
 
-set -e 
+set -e
+
+function brew_install() {
+  echo 'install brew'
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'check brew is installed '
+  brew help
+  if [[ $? == '0' ]] ; then 
+    xargs brew install < brew.txt
+  fi
+  echo 'brew install completed'
+}
 
 function setup_git() {
     echo 'Setting up git config...'
@@ -21,15 +32,15 @@ function setup_git() {
 
 
 function setup_vim() {
-    sudo apt-get install vim
+    #sudo apt-get install vim
     sudo git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     sudo ln -s vimrc ~/.vimrc
     sudo touch ~/.vimrc
     sudo vim +PluginInstall +qall
 }
 
-echo "apt-get update..."
-sudo apt-get update
+#echo "apt-get update..."
+#sudo apt-get update
 
 echo "setup git.."
 setup_git

@@ -1,8 +1,15 @@
+
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/sylas/.oh-my-zsh"
+  export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -10,7 +17,8 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # 主題設置
 # 列表在 ~/.oh-my-zsh/themes/
-  ZSH_THEME="ys"
+  #ZSH_THEME="ys"
+  ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -25,7 +33,7 @@
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # 連接符不敏感， "_" 和 "-" 互換
-# HYPHEN_INSENSITIVE="true"
+
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # 自動更新
@@ -94,21 +102,27 @@ plugins=(
  urltools
  vi-mode
  web-search
+ zsh-completions
+ zsh-autosuggestions
+ terraform
+ kubectl
 )
 # plugins list
 #	history
 
 source $ZSH/oh-my-zsh.sh
-
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # User configuration
-#JAVAHOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64/bin"
-GraalVm="/home/sylas/GrralVm/graalvm-ce-1.0.0-rc8/bin"
-#GraalVm=""
-GOHOME="/usr/local/go/bin"
-#export PATH="$GraalVm:$PATH"
-#export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-export PATH="$GOHOME:$PATH"
+#GO_PATH="/usr/local/go/bin"
+#export GOROOT=/usr/local/go
+#export GOBIN=$GOROOT/bin
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+#export GOROOT="/opt/homebrew/bin"
+export GOBIN=$GOPATH/bin
+#export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export PATH=$PATH:$GOBIN:$GOROOT/bin
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -156,3 +170,60 @@ alias dw='cd ~/WorkSpace/docker'
 
 # bindkey
 bindkey "\e\e" sudo-command-line
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# direnv
+eval "$(direnv hook zsh)"
+. ~/.txone
+
+## zsh-completions
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+## flux
+command -v flux >/dev/null && . <(flux completion zsh)
+
+
+PATH="/Users/sylas_hsu/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/sylas_hsu/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/sylas_hsu/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/sylas_hsu/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/sylas_hsu/perl5"; export PERL_MM_OPT;
+
+# node version
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+#export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+
+# homebrew
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
+# krew
+export PATH="${PATH}:${HOME}/.krew/bin"
+
+##
+autoload -U +X bashcompinit && bashcompinit
+complete -C /opt/homebrew/bin/parquet-tools parquet-tools
+
+export PATH="/opt/homebrew/opt/go@1.20/bin:$PATH"
+
+##
+alias docker_enter='docker run --entrypoint /bin/sh -it'
+alias docker_cleanup='docker rm $(docker ps -f status=exited -aq)'
+alias docker_img_clean='docker rmi $(docker images -f "dangling=true" -q)'
